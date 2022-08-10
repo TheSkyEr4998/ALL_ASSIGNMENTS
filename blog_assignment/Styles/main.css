@@ -1,0 +1,29 @@
+table, td, th {
+    border: 1px solid black;
+}
+
+body{
+    margin: 0;
+}
+
+#navbar{
+    border: 1px solid red;
+    gap: 50px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    margin: auto;
+    background-color: bisque;
+} 
+#main{
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#main > * {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+}

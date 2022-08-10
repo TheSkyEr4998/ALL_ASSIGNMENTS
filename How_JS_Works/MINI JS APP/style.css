@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: 600;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 32px;
+    color: rgb(33, 111, 235);
+    text-shadow: 1px 1px #000000;
+  }
+
+  #buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 40%;
+    margin: 100px auto;
+  }
+
+  button {
+    color: rgb(255, 255, 255);
+    background-color: #4176e8;
+    border-radius: 15px;
+    padding: 20px 10px;
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+  }
+
+  button:hover {
+    /* color: white; */
+    background-color: #326fe1;
+  }
+
+  button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  .pop {
+    width: 50%;
+    background: rgb(19, 15, 15);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    color: white;
+    padding: 10px 30px;
+    visibility: hidden;
+    transition: transform 0.5s;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+
+  .pop h2 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .pop iframe {
+    width: 90%;
+    margin: auto;
+    height: 300px;
+    border: 3px solid rgb(255, 255, 255);
+  }
+
+  .pop ul {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+  }
+  input {
+    color: black;
+    margin: 10px;
+    background-color: #296be8;
+    border-radius: 15px;
+    padding: 20px 100px;
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+  }
+
+  input:hover {
+    /* color: white; */
+    background-color: #0c4f1c;
+  }
+
+  .pop button {
+    padding: 10px 100px;
+  }
+
+  #openpop {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }

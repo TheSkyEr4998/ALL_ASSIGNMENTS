@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <style>
+            p{
+                color: blue;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+                border: 4px solid pink;
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="main()">SURPRICE</button>
+        <button onclick="stop()">ENOUGH</button>
+        <div id="container"></div>
+    </body>
+    <script>
+        var x;
+        var container = document.getElementById("container");
+        function main(){
+            x = setInterval(function(){
+                let text = document.createElement("p");
+                text.textContent += "venkatesh";
+                container.append(text);
+            }, 1000);
+        }
+        function stop(){
+            clearInterval(x);
+        }
+    </script>
+</html>

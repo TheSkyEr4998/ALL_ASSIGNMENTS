@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <style>
+            .borderwhole{
+                border: 2px solid brown;
+                padding: 2%;
+                width: 60%;
+                height: 320%;
+                margin: auto;
+                margin-top: 8%;
+                background-color: rgb(236, 236, 142);
+            }
+            .border{
+                border: 1px solid black;
+                padding: 1%;
+                text-align: right;
+                color: black;
+                font-weight: bold;
+            }
+            .img1{
+                width: 60%;
+                height: 20%;
+            }
+            #container{
+                display: grid;
+                grid-template-columns: repeat(3, 2fr);
+                margin-top: 5%;
+                margin-left: 5%;
+                margin-right: 5%;
+                grid-gap: 20px;
+            }  
+
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #cecece;
+                background-color: pink;
+            }
+            .img3 {
+                margin-top: 10px;
+                width: 150px;
+                height: 150px;
+            }
+            p{
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body class="borderwhole">
+        <div class="border">
+            <a href="C:\Users\ELCOT\Desktop\vs code - programs\masai assignments\login.html" target="_black">Home</a>
+            <a href="C:\Users\ELCOT\Desktop\vs code - programs\masai assignments\login.html" target="_black">Login</a>
+        </div><br><br>
+        <div>
+            <h1>Slideshow</h1>
+            <button onclick="start()">START</button>
+            <button onclick="stop()">STOP</button><br><br>
+            
+            <img src="" id="img2" ><br><br>
+        </div>
+        <div id="container"></div>
+        <script>
+            var x;
+          
+            var images = ["https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/11/thumbs/800x531/71382.jpg","http://wp.nathabblog.com/wp-content/uploads/2011/09/rainbow-3320571_640.jpg", "https://cdn1.matadornetwork.com/blogs/1/2018/02/Taj-Mahal.jpg", "https://images.unsplash.com/photo-1530999811698-221aa9eb1739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8NyUyMHdvbmRlcnMlMjBvZiUyMHRoZSUyMHdvcmxkfGVufDB8fDB8fA%3D%3D&w=1000&q=80", "https://cdn1.matadornetwork.com/blogs/1/2018/02/Petra-1200x853.jpg"];
+
+            function start(){
+                var slideShowimage = document.getElementById("img2");
+                var i=0;
+                x = setInterval(function (){
+                    if(i==images.length){
+                        i = 0;
+                    }
+                    document.getElementsByTagName("img")[0].setAttribute("class", "img1");
+
+                    slideShowimage.src = images[i];
+                    i++;
+                }, 2000);
+            }
+            function stop(){
+                clearInterval(x);
+            }
+            
+            var container = document.getElementById("container");
+            async function getData(){
+                try{
+                    container.innerHTML = "";
+                    var res = await fetch("http://www.omdbapi.com/?apikey=95f15b51&s=avengers");
+                    var data = await res.json();
+                    console.log(data.Search);
+                    displayData(data.Search);
+                }
+                catch(err){
+                    console.log(err);
+                 }
+            }
+            getData();
+            function displayData(data){
+                data.forEach(function (product) {
+                //console.log(product);
+                    let productCard = document.createElement("div");
+
+                    let Title = document.createElement("p");
+                    Title.textContent = product.Title;
+
+                    let Poster = document.createElement("img");
+                    Poster.setAttribute("class", "img3");
+                    Poster.src = product.Poster;
+                
+                    let Type = document.createElement("h2");
+                    Type.textContent = product.Type;
+                
+                    let Year = document.createElement("h3");
+                    Year.textContent = product.Year;
+
+
+                    productCard.append(Poster, Title, Type, Year);
+                
+                    container.append(productCard);
+                });
+            }
+        </script>
+    </body>
+</html>

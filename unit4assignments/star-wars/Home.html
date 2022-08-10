@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <style>
+            #navbar {
+                display: flex;
+                justify-content: space-between;
+                padding-left: 6%;
+                padding-right: 6%;
+                border: solid 1px black;
+            }
+            .options {
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+            }
+            .options h3 {
+                padding-left: 30px;
+                padding-right: 10px;
+            }
+            #container{
+                display: grid;
+                grid-template-columns: repeat(4, 2fr);
+                margin-top: 5%;
+                margin-left: 5%;
+                margin-right: 5%;
+                grid-gap: 20px;
+            }  
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #cecece;
+                background-color: pink;
+            }
+            button{
+                margin-left: 4%;
+                margin-top: 4%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <div>
+               <h3>Star Wars</h3>
+            </div>
+            <div class="options">
+                <h3><a href="Home.html">Home Page</a></h3>
+                <h3><a href="Films.html">Films Page</a></h3>
+            </div>
+        </div>
+        <div id="container"></div>
+    </body>
+    <script type="module">
+
+        var container = document.getElementById("container");
+        async function searchPeople(){
+            try{
+                let res = await fetch("https://swapi.dev/api/people/");
+                let data = await res.json();
+                console.log(data);
+                localStorage.setItem("Name:", JSON.stringify(data));
+                displayData(data.results);
+            } 
+            catch(err){
+                console.log(err);
+            }
+        }
+        searchPeople();
+
+        function displayData(data){
+            data.forEach(function(product){
+                var collection = document.createElement("div");
+
+                var name = document.createElement("p");
+                name.textContent = "name: " + product.name;
+
+                var gender = document.createElement("p");
+                gender.textContent = "gender: " + product.birth_year;
+
+                var eye = document.createElement("p");
+                eye.textContent = "eye-color: " + product.eye_color;
+
+                var hair = document.createElement("p");
+                hair.textContent = "hair-color: " + product.hari_color;
+
+                var skin = document.createElement("p");
+                skin.textContent = "skin-color" + product.skin_color;
+
+
+                collection.append(name, gender, eye, hair, skin);
+                container.append(collection);
+            })
+        }
+
+    </script>
+</html>

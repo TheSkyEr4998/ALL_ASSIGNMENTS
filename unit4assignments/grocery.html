@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <style>
+            body{
+                text-align: center;
+            }
+            table, th, td{
+                margin: auto;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <p>ITEM: <input type="text" placeholder="item" id="item"></p>
+            <p>QUANTITY: <input type="text" placeholder="quantity" id="quantity"></p>
+            <button onclick="addItem()">SUBMIT</button><br><br>
+            <button onclick="delItem()">DELETE</button><br><br>
+            <table id="table1"></table>
+        </div>
+    </body>
+    <script>
+        var div1 = document.getElementById("container");
+        var table1 = document.getElementById("table1");
+        var item1 = [];
+        var quan = [];
+
+        function addItem(){
+            var c1 = document.getElementById("item");
+            var c2 = document.getElementById("quantity");
+            item1.push(c1.value);
+            quan.push(c2.value);
+            localStorage.setItem("item", JSON.stringify(item1));
+            localStorage.setItem("quantity", JSON.stringify(quan));
+            //console.log(JSON.parse(localStorage.getItem("item")));
+            var c3 = JSON.parse(localStorage.getItem("item"));
+            var c4 = JSON.parse(localStorage.getItem("quantity"));
+            getItem(c3, c4);
+        }
+        function getItem(c3, c4){
+            console.log(c3);
+            var trow1 = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.textContent = c3[c3.length-1];
+            var td2 = document.createElement("td");
+            td2.textContent = c4[c4.length-1];
+
+            trow1.append(td1, td2);
+            table1.append(trow1);
+        }
+        function delItem(){
+            //localStorage.removeItem("quantity");
+            localStorage.removeItem("item");
+            localStorage.removeItem("quantity")
+        }
+    </script>
+</html>

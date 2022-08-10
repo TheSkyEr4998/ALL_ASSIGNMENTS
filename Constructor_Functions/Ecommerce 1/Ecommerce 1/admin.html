@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce 1</title>
+</head>
+<style>
+    #add{
+        margin-left: 20px;
+        align-items: center;
+        width : 70%;
+    }
+    .form{
+        margin-left: 20px;
+    }
+    #form{
+        width:300px
+    }
+
+    #form>div{
+        height: 30px;
+        gap: 20px;
+    }
+    #form>div>div{
+        width: 100px;
+        display: inline-block;
+        flex-direction: row;
+    }
+    #productbutton{
+        margin-top: 30px;
+    }
+</style>
+<body>
+    <h1>Enter Product Details</h1>
+    <div class="form">
+    <form action="" method="get" id="form">
+        <div>
+            <div><label for="name">Product Name</label></div>
+            <div><input type="text" id="name" name="name" placeholder="Product Name"></div>
+        </div>
+        <div>
+            <div><label for="">category</label></div>
+            <div><input type="text" id="category" placeholder="category"></div>
+        </div>
+        <div>
+            <div><label for="">Image Url</label></div>
+            <div><input type="url" id="image" placeholder="Image Url"></div>
+        </div>
+        <div>
+            <div><label for="">Product price</label></div>
+            <div><input type="text" id="price" placeholder="price"></div>
+            
+        </div>
+        <div>
+            <div><label for="">Gender</label></div>
+            <div><select name="Gender" id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div>
+            
+        </div>
+        <div>
+            <div><label for="">sold</label></div>
+            <div> <select id="sold"><option value="false">false</option><option value="true">true</option></select></div>
+        </div>
+            <button id="add" onclick="getdata()">Submit</button>
+
+    </form>
+</div>
+
+<div id="productbutton"><a href="products.html" target="_blank"><button>Go to Product Page</button></a></div>
+</body>
+</html>
+
+<script> 
+
+    document.getElementById("form").addEventListener("click", function(){
+        event.preventDefault();
+    })
+    let database =[];
+    let i=-1;
+    function getdata(){
+        i = i+1
+        let name = document.getElementById("name").value;
+        let category = document.getElementById("category").value;
+        let image = document.getElementById("image").value;
+        let price = document.getElementById("price").value;
+        let gender = document.getElementById("gender").value;
+        let sold = document.getElementById("sold").value;
+
+        let prod1 = new productinfo(name, category, image, price, gender, sold);
+        database.push(prod1);
+
+        localStorage.setItem("Products", JSON.stringify(database));
+        console.log(database)
+        
+    }
+
+    let productinfo = function (name, category, image, price, gender, sold){
+            this.id = i;
+            this.name = name;
+            this.category = category;
+            this.image = image;
+            this.price = price;
+            this.gender = gender;
+            this.sold = sold; 
+        }
+        
+    
+
+</script>

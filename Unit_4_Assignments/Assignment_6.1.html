@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Document</title>
+        <style>
+            #box{
+                width: 30%;
+                height: auto;
+                border: 1px solid blue;
+                padding: 15px;
+                margin: auto;
+            }
+            h2{
+                text-align: center;
+                color: rgb(10, 10, 168);
+            }
+            #button{
+                width: 20%;
+                height: auto;
+                margin: auto;
+            }
+            button{
+                color: red;
+                background-color: rgb(243, 243, 134);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <h2>MARRIAGE AGE VALIDATOR</h2>
+            <label for="gender">
+                <b>SELECT GENDER:</b>
+            </label>
+                <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                </select>
+            <br>
+            <br>
+            <label for="year">
+                <b>ENTER BIRTH YEAR:</b>
+            </label>
+                <input type="text" id="year">
+            <br>
+            <br>
+            <div id="button">
+                <button onclick="validation()">
+                    SUBMIT
+                </button>
+            </div>
+        </div>
+    </body>
+    <script>
+        function validation(){
+            if((document.getElementById("gender").value=="male") && (parseInt(document.getElementById("year").value)<2002))
+            {
+                alert("You are above 21 years and eligible for Age Criteria of Marrige...!") 
+            }
+    
+            else if((document.getElementById("gender").value=="female") && (parseInt(document.getElementById("year").value)<2004)){
+                alert("You are above 18 years and eligible for Age Criteria of Marrige...!")
+            }
+
+            else{
+                alert("Your age does not meet Age Criteria of Marrige...!")
+            }
+        }
+    </script>
+</html>

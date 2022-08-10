@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+<style>
+.products{
+    display: flex;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    align-items: center;
+    justify-content: space-around;
+}
+p{
+    margin: 15px;
+}
+#id{
+    display: flex;
+    justify-content: space-around;
+}
+#buy{
+    background-color: rgb(175, 117, 9);
+    color: aliceblue;
+    width: 20%;
+    height: 30px;
+    display: block;
+    margin: 15px 0px 0px 15px;
+    border: 0px;
+
+}
+#cart2{
+    background-color: rgb(10, 124, 124);
+    color: white;
+    padding: 5px;
+
+    border-radius: 5px;
+   
+    margin:15px 0px 10px 30px;
+}
+#cart1{
+    background-color: rgb(10, 124, 124);
+    color: white;
+    padding: 5px;
+
+    border-radius: 5px;
+ 
+ margin: 15px 0px 10px 10px;
+}
+
+</style>
+</head>
+<body>
+    <button id="cart1" >
+        <a style="color: white" href="Womens.html">Women's Products</a>
+        
+        </button>
+       
+    <button id="cart2">
+        <a style="color: white" href="mens.html">Men's Products</a>
+    </button>
+   
+<h2>Cart</h2>
+
+
+
+<div id="cart">
+
+  
+
+</div>
+<form id="frm" action="">
+    <label for="">Add Promo</label><br>
+    <input type="text" name="" id="promo"><br>
+    <input type="submit">
+    
+    
+    </form>
+
+</body>
+</html>
+<script>
+var product = JSON.parse(localStorage.getItem("cart")) || [];
+var cart = document.getElementById("cart");
+if(product.length == 0){
+    cart.innerText = "Add Items in cart";
+}else{
+    calculate();
+    displayProducts();
+    
+}
+function displayProducts(){
+   
+
+    var pro = 
+    document.querySelector("#cart").innerHTML = "";
+
+    product.map(function(elem,index){
+
+        var div = document.createElement("div");
+
+        div.setAttribute("class","products");
+
+    var image = document.createElement("img");
+
+    image.setAttribute("src", elem.image_url)
+
+    var name = document.createElement("h5");
+    name.innerText = elem.name;
+    var priceBox = document.createElement("div");
+    var price = document.createElement("h4");
+    price.innerText = elem.price;
+    priceBox.append(price);
+    var dlt = document.createElement("button");
+    dlt.innerHTML = 'Delete';
+   dlt.style.background = "red";
+   dlt.style.color = "white"
+
+   
+   dlt. addEventListener("click", function() { 
+    
+    dltFunc(index)});
+
+    div.append(image,name, priceBox, dlt);
+
+    document.getElementById("cart").append(div)
+
+    });
+    calculate();
+}
+
+function dltFunc(index){
+product.splice(index,1);
+localStorage.setItem("cart", JSON.stringify(product));
+displayProducts();
+console.log(product);
+}
+
+function calculate(){
+
+ var  total =   product.reduce(function(acc,elem){
+    //I dont know why + operator is not actually working its just appending
+return acc -(-elem.price) ;
+  },0);
+  console.log(total + "total price");
+ 
+ var inp = document.getElementById("promo").value;
+ if(inp == "masai30"){
+    total = total*30/100;
+    alert("success")
+ }
+  var cartVal = document.createElement("h5")
+  if(total == 0 ){
+    return;
+  }else{
+    cartVal.innerText = "Rs. " + total;
+  localStorage.setItem("total", JSON.stringify(total));
+ 
+  var p = document.createElement("h4");
+  p.innerText = "Total Price";
+
+  var div = document.createElement("div");
+  div.setAttribute("id", "id");
+  var buy = document.createElement("button");
+  buy.innerHTML = "Buy Now"
+
+buy.setAttribute("id","buy");
+buy.addEventListener("click", goToPay);
+
+
+  div.append(p, cartVal,buy);
+  document.querySelector("#cart").append(div);
+}
+}
+function goToPay(){
+    window.location.href = "payment.html"
+}
+
+
+
+
+</script>

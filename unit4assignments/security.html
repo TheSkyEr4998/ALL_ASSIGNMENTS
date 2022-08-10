@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: flex;
+                height: 500px;
+                padding: 5px;
+            }
+            #input-section, #output-section{
+                flex: 1;
+                border: 1px solid black;
+                margin: 5px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="container">
+            <div id="register-container">
+              <h1>Register</h1>
+              <form>
+                <input type="text" id="name" placeholder="Name : " /><br />
+                <input type="email" id="email" placeholder="Email :" /><br />
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="password : "
+                /><br />
+                <input type="text" id="username" placeholder="Username : " /><br />
+                <input type="text" id="mobile" placeholder="Mobile : " /><br />
+                <input
+                  type="text"
+                  id="description"
+                  placeholder="Description : "
+                /><br />
+              </form>
+              <button onclick="register()">REGISTER</button>
+            </div>
+            <div id="login-container"></div>
+          </div>
+    </body>
+
+    </body>
+    <script>
+        //register
+        //login api link
+        //http://masai-api-mocker.herokuapp.com/
+        const register = async() => {
+            try{
+                let register_data = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value,
+                    username: document.getElementById("username").value,
+                    mobile: document.getElementById("mobile").value,
+                    description: document.getElementById("description").value,
+                };
+
+                let register_data_json = JSON.stringify(register_data);
+                let res = await fetch(`https://masai-api-herokuapp.com/auth/register`,{
+                    method: "POST",
+                    headers: {
+                        "Content-Type" : "application/json",
+                    },
+                    body: register_data_json,
+                }
+                );
+
+                let data = await res.json();
+                console.log(data);
+
+            }
+            catch(err){
+                console.log(err);
+            }
+
+        }
+        
+    </script>
+</html>

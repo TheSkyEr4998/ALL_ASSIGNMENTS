@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+            .borderwhole{
+                border: 2px solid skyblue;
+                padding: 2%;
+                width: 60%;
+                height: 80%;
+                margin: auto;
+                margin-top: 8%;
+            }
+            .border{
+                border: 1px solid black;
+                padding: 1%;
+                text-align: right;
+                color: black;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body class="borderwhole">
+        <div class="border">
+            <a href="C:\Users\ELCOT\Desktop\vs code - programs\masai assignments\index.html" target="_black">Home</a>
+            <a href="C:\Users\ELCOT\Desktop\vs code - programs\masai assignments\index.html" target="_black">Login</a>
+        </div><br><br>
+        <div>            
+            <lable>Email: </lable>
+            <input type="text" placeholder="email address" id="mail"><br><br>
+            <lable>Password: </lable>
+            <input type="text" placeholder="password" id="pass"><br><br>
+            <button id="submission">submit</button>
+        </div>
+        <script>
+
+            var btn = document.getElementById("submission"); 
+            var a = document.getElementById("mail");
+            var b = document.getElementById("pass");
+            var mymail = "venkatpandu938@gmail.com";
+            var password = "venkatesh1451";
+            function check(){
+                if(a.value!=mymail || b.value!=password){
+                    alert("Invalid Credentials");
+                }
+                else{
+                    window.open("file:///C:/Users/ELCOT/Desktop/vs%20code%20-%20programs/masai%20assignments/index.html", "_blank");
+                }
+                console.log(a.value);
+            }
+            btn.addEventListener('click', check);
+        </script>
+    </body>
+</html>

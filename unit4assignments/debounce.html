@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: aqua;
+            }
+            input{
+                width: 500px;
+                padding: 11px;
+                border-radius: 10px;
+            }
+            #movies{
+                margin-top: 2%;
+                padding: 8px;
+                width: 470px;
+                height: 400px;
+                border: 5px solid black;
+                overflow: scroll;
+                border-radius: 3%;
+                margin: auto;
+                margin-top: 2%;
+            }
+            p{
+                border: 1px solid black;
+                background-color: white;
+                text-align: center;
+                padding: 3%;
+                color: red;
+                font-weight: bold;
+            }
+            .center{
+                padding-left: 31.5%;
+            }
+
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 5px solid #cecece;
+                background-color: sandybrown;
+            }
+            img {
+                margin-top: 10px;
+                width: 150px;
+                height: 150px;
+            }
+
+            h1,h2{
+                color: rgb(23, 103, 184);
+            }
+            h3{
+                color: white;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="center">
+        <input placeholder="Search movie" type="text" id="search" oninput="debounce(main, 1000)">
+        </div>
+        <div id="movies"></div>
+        </div>
+        <div id="container"></div>
+    </body>
+    <script>
+        let API_KEY = "95f15b51";
+        async function main(){
+            let data = await searchMovie();
+            if(data === undefined){
+                return false;
+            }
+            console.log(data);  
+            displayData(data);
+        }
+        async function searchMovie(){
+            try{
+                let movie = document.getElementById("search").value;
+                let res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`);
+                let data = await res.json();
+                return data.Search;
+            } 
+            catch(err){
+                console.log(err);
+            }
+        }
+
+
+        let reqtitle = "";
+        let movies_div = document.getElementById("movies");
+        function displayData(data){
+            movies_div.innerHTML = "";
+            data.forEach(function(movies_title){
+
+                let title = document.createElement("p");
+                
+                title.textContent = movies_title.Title;
+                //console.log(movies_title.Title);
+                
+                movies_div.append(title);
+                title.addEventListener('click',(e)=>{
+                    console.log(e.target.textContent);
+                    reqMovie(e.target.textContent);
+                })
+                //console.log(movies_title);
+                //reqtitle = movies_title.Title;
+            });
+        }
+        
+
+        let container = document.getElementById("container");
+        async function reqMovie(reqtitle){
+            try{
+                let res1 = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&t=${reqtitle}`);
+                let data1 = await res1.json();
+                if(data1.Title != "Undefined"){
+                    console.log(data1);
+                    displaymyMovie(data1);
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        reqMovie();
+
+        function displaymyMovie(data){
+            let product = document.createElement("div");
+
+            let image = document.createElement("img");
+            image.src = data.Poster;
+
+            let title = document.createElement("h1");
+            title.textContent = data.Title;
+
+            let releasedata = document.createElement("h2");
+            releasedata.textContent = data.Released;
+
+            let actors = document.createElement("h2");
+            actors.textContent = data.Actors;
+
+            let plot = document.createElement("h3");
+            plot.textContent = data.Plot;
+
+            product.append(image, title, releasedata, actors, plot);
+            container.append(product);
+        }
+
+
+
+        var timerId;
+        function debounce(cbFunc, delay){
+            if(timerId){
+                clearTimeout(timerId);
+            }
+            timerId = setTimeout(function (){
+                cbFunc();
+            }, delay);
+        }
+
+    </script>
+</html>

@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            #bground{
+                background-color: rgb(30, 177, 235);
+                width: 60%;
+                height: 100%;
+                margin: auto;
+                border-radius: 2%;
+            }
+            #bground1{
+                background-color: brown;
+                width: 15%;
+                height: 13%;
+                bottom: 10%;
+                position: absolute;
+                margin-left: 40%;
+                border-radius: 15%;
+            }
+            h2{
+                text-align: center;
+                padding-top: 3%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="bground">
+            <div id="bground1">
+                <h2>SUBMIT</h2>
+            </div>
+        </div>
+        <script>
+            var dis = document.getElementById("bground1");
+
+            function changeColor(){
+                dis.style.backgroundColor = "brown";
+            }
+            function changeColor1(){
+                dis.style.backgroundColor = "green";
+            }
+            dis.addEventListener("mouseleave", changeColor);
+            dis.addEventListener("mouseenter", changeColor1);
+        </script>
+    </body>
+</html>

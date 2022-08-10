@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Movies</title>
+</head>
+<link rel="stylesheet" href="index.css">
+<body>
+    <div>
+        <nav id="navbar">
+            <div class="navsubdiv"><a href="index.html"><img id="logo" src="https://secure-media.hotstarext.com/web-assets/prod/images/brand-logos/disney-hotstar-logo-dark.svg" alt=""></a></div>
+            <div class="navsubdiv"><h3>
+                <input type="text" onclick="getdata()" id="search"  placeholder="Search" oninput="debounce(main, 100)" >
+            </h3>
+            </div>
+            <div class="navsubdiv">
+            <h3><a href="">LOGIN</a></h3>
+            </div>
+        </nav>
+    </div>
+    <!-- <div id="main"></div> -->
+    <div id="box"></div>
+</body>
+</html>
+<script src="trending.js"></script>

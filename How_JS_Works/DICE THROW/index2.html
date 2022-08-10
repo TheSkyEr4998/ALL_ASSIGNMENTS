@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <style>
+        body{
+            background-color: rgb(255, 255, 255);
+        }
+        #win{
+            text-align : center;
+            margin : 50px 0;
+            font-size : 60px;
+            color:rgb(38, 32, 215);
+            
+        }
+        #container{
+            width : 50%;
+            display : flex;
+            margin : auto;
+            justify-content : space-between;
+            align-items : center;
+            font-size : 30px;
+            text-align : center;
+        }
+        #container #p1 , #container #p2 , #container #p3{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        background-color: rgb(74, 118, 230);
+        display : flex;
+        width : 90px;
+        height : 90px;
+        margin : auto;
+        align-items : center;
+        justify-content : center;
+        margin-top : 60px;
+        border-radius : 10px;
+        font-size: 40px;
+        color: rgb(12, 12, 12);
+}
+#roll{
+    display : block;
+    margin : auto;
+    margin-top : 150px;
+    height : 60px;
+    width : 20%;
+    border-radius : 40px;
+    background: rgb(28, 28, 233);
+    border : none;
+    font-size : 30px;
+    color : white;
+    cursor : pointer;
+
+}
+#roll:hover{
+background-color: darkblue;
+}
+.diceroll{
+    animation: diceroll .5s infinite linear;
+}
+
+@keyframes diceroll {
+    0% {
+    transform: rotate(50deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+        }
+    100% {
+     transform: rotate(50deg);
+     }
+}
+    </style>
+</head>
+<body>
+    <div id = "win"> Winners</div>
+    <div id = "container">
+        <div id = "1">
+              <div class="c">Player A</div>
+              <div id = "p1">1</div>
+        </div>
+    
+        <div id = "2">
+            <div class="c">Player B</div>
+            <div id = "p2">2</div>
+      </div>
+    
+      <div id = "3">
+        <div class="c">Player C</div>
+        <div id = "p3">3</div>
+    </div>
+    </div>
+    <button id="roll">ROLL THE DICE</button>
+    
+</body>
+<script>
+document.getElementById("roll").addEventListener("click",function(){
+document.getElementById("p1").setAttribute("class" , "diceroll")
+document.getElementById("p2").setAttribute("class" , "diceroll")
+document.getElementById("p3").setAttribute("class" , "diceroll")
+
+setTimeout(function(){ 
+    document.getElementById("p1").removeAttribute("class","diceroll")
+    document.getElementById("p2").removeAttribute("class", "diceroll")
+    document.getElementById("p3").removeAttribute( "class","diceroll")
+
+
+
+
+ var num1 = Math.floor(Math.random()*6) + 1;
+ var num2 = Math.floor(Math.random()*6) + 1;
+ var num3 = Math.floor(Math.random()*6) + 1;
+
+ var obj = [
+         ["r1" ,num1 ],
+
+         ["r2",num2],
+
+         ["r3" , num3 ]
+ ]
+
+    
+ document.getElementById("p1").textContent = num1;
+ document.getElementById("p2").textContent = num2;
+ document.getElementById("p3").textContent = num3;
+
+ obj.sort(function(a , b){
+      return b[1] - a[1];
+ })
+
+ console.log(obj);   
+
+
+
+ if(obj[0][0] == "r1"){
+    document.getElementById("p1").style.background = "green";
+    document.getElementById("win").innerText = "Winner  is Player A"
+    
+}else if(obj[0][0] == "r2"){
+    document.getElementById("p2").style.background = "green";
+    document.getElementById("win").innerText = "Winner is Player B"
+}else{
+    document.getElementById("p3").style.background = "green";
+    document.getElementById("win").innerText = "Winner is Player C"
+}
+
+if(obj[1][0] == "r1"){
+    document.getElementById("p1").style.background = "yellow";
+    
+}else if(obj[1][0] == "r2"){
+    document.getElementById("p2").style.background = "yellow";
+}else{
+    document.getElementById("p3").style.background = "yellow";
+}
+
+if(obj[2][0] == "r1"){
+    document.getElementById("p1").style.background = "red";
+    
+}else if(obj[2][0] == "r2"){
+    document.getElementById("p2").style.background = "red";
+}else{
+    document.getElementById("p3").style.background = "red";
+}
+
+if(num1 == num2 && num1 == num3){
+
+    document.getElementById("p1").style.background = "blue";
+    document.getElementById("p2").style.background = "blue";
+    document.getElementById("p3").style.background = "blue";
+    document.getElementById("win").innerText = "Its Draw"
+      
+}
+
+if(num1 == num2){
+
+    document.getElementById("p1").style.background = "blue";
+    document.getElementById("p2").style.background = "blue";
+    if(obj[0][0] == "r1"){  
+        document.getElementById("win").innerText = "Its Draw"
+       }
+  
+      
+}
+
+if(num1 == num3){
+
+    document.getElementById("p1").style.background = "blue";
+    document.getElementById("p3").style.background = "blue";
+    if(obj[0][0] == "r1"){  
+     document.getElementById("win").innerText = "Its Draw"
+    }
+      
+}
+
+if(num2 == num3){
+
+    document.getElementById("p2").style.background = "blue";
+    document.getElementById("p3").style.background = "blue";
+    if(obj[0][0] == "r2"){  
+    document.getElementById("win").innerText = "Its Draw";
+    }
+      
+}
+
+} , 1000)
+
+})
+</script>
+</html>

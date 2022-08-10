@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Assignment 4.1</title>
+        <style>
+            .box{
+                height: auto;
+                width: 40%;
+                margin: auto;
+                text-align: center;
+            }
+            .box>#box1{
+                font-size:25px;
+                font-weight: 800;
+                font-family: sans-serif;
+                color: rgb(122, 122, 122);
+            }
+            .box>#box2{
+                font-size:32px;
+                font-weight: 800;
+                font-family: sans-serif;
+                margin-top: -10px;
+            }
+            #container{
+                display: grid;
+                grid-template-columns: repeat(8,1fr);
+                grid-template-rows: repeat(2,1fr);
+                gap: 30px;
+                margin: auto;
+                width: 80%;
+            }
+            #container>div>img{
+                height: 100%;
+                width: 100%;
+                border-radius: 15px;
+            }
+            #button{
+                height: auto;
+                width: auto;
+                margin: auto;
+                text-align: center;
+                padding-top: 50px;
+            }
+            #button>button{
+                color: red;
+                border: 1px solid red;
+                padding: 10px 15px 10px 15px;
+                border-radius: 8px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+            /* for medium screen */
+            @media all and (min-width:400px) and (max-width:650px){
+                #container{
+                    grid-template-columns: repeat(3,1fr);
+                    grid-template-rows: repeat(5,1fr);
+                }
+            }
+            @media all and (min-width:651px) and (max-width:850px){
+                #container{
+                    grid-template-columns: repeat(5,1fr);
+                    grid-template-rows: repeat(3,1fr);
+                }
+            }
+        </style>
+    </head>
+    <body style="background-color:rgb(252, 247, 248)">
+        <div class="box">
+            <h2 id="box1">Have a Dream Company In Mind?</h2>
+            <h1 id="box2">Meet Our 700+ Hiring Partners</h1>
+        </div>
+        <div id="container">
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/eatfit_9dc276a187.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/dream11_d6c8d97a52.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/urbanpiper_2884348a0b.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/airmeet_93e45faced.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/paytm_a5c1ce2bc6.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/whitehat_5a86f1e308.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/bharatpe_a3a5a3f552.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/swiggy_bc1b88842e.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/vyapar_3f3770ebb5.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/pagarbook_2746958f65.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/smallcase_1740bcc33f.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/sharechat_23a9923a34.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/ola_15b5ee2b82.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/ibm_795b5429ee.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/byjus_e7b97a9c80.svg" alt=""></div>
+            <div><img src="https://masai-website-images.s3.ap-south-1.amazonaws.com/ajio_a16cd7a85b.svg" alt=""></div>
+        </div>
+        <div id="button">
+            <button>
+                SEE MORE PARTNERS >
+            </button>
+        </div>
+    </body>
+</html>

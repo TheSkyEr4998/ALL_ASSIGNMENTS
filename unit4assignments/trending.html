@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: grid;
+                grid-template-columns: repeat(4, 2fr);
+                margin-top: 5%;
+                margin-left: 5%;
+                margin-right: 5%;
+                grid-gap: 20px;
+            }  
+
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #cecece;
+                background-color: aqua;
+            }
+            img {
+                margin-top: 10px;
+                width: 150px;
+                height: 150px;
+            }
+            p{
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    <script>
+        let container = document.getElementById("container");
+        async function getData(){
+            try{
+                let res = await fetch("https://api.themoviedb.org/4/list/1?api_key=0e13e35e456011d435f8832a7920eaa5");
+                let data = await res.json();
+                console.log(data.results);
+                displayData(data.results);
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        getData();
+
+        function displayData(data){
+            data.forEach(function(product){
+                let productCard = document.createElement("div");
+
+                let Title = document.createElement("p");
+                Title.textContent = product.title;
+
+                let Poster = document.createElement("img");
+                Poster.src = "https:/" + product.poster_path;
+                
+                let Release = document.createElement("h2");
+                Release.textContent = product.release_date;
+                
+                let Rating = document.createElement("h3");
+                Rating.textContent = product.vote_average;
+
+
+                productCard.append(Poster, Title, Release, Rating);
+                
+                container.append(productCard);
+            })
+        }
+    </script>
+</html>

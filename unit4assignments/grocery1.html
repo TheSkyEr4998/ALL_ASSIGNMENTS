@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <style>
+            body{
+                text-align: center;
+            }
+            table, th, td{
+                margin: auto;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <p>ITEM: <input type="text" placeholder="item" id="item"></p>
+            <p>QUANTITY: <input type="text" placeholder="quantity" id="quantity"></p>
+            <button onclick="addItem()">SUBMIT</button><br><br>
+            <button onclick="delItem()">DELETE</button><br><br>
+            <table id="table1"></table>
+        </div>
+    </body>
+    <script>
+        // window.addEventListener("load",getItem);
+        var div1 = document.getElementById("container");
+        var table1 = document.getElementById("table1");
+        var item1 = [];
+        var quan = [];
+        function addItem(){
+            var c1 = document.getElementById("item");
+            var c2 = document.getElementById("quantity");
+            item1.push(c1.value);
+            quan.push(c2.value);
+            localStorage.setItem("quantity", JSON.stringify(quan));
+            localStorage.setItem("item", JSON.stringify(item1));
+            displayData();
+        }
+
+        function delItem(e){
+                //localStorage.removeItem("quantity");
+                // console.log(e.target.parentNode.childNodes[0].textContent);
+                var isFound = false;
+                var ind = -1;
+                var tarItem = e.target.parentNode.childNodes[0].textContent;
+                for(var i=0; i<item1.length; i++){
+                    if(item1[i]==tarItem){
+                        isFound=true
+                        ind = i
+                    }
+                }
+                if(isFound){
+                    item1.splice(ind,1)
+                    quan.splice(ind,1)
+                    localStorage.setItem("quantity", JSON.stringify(quan));
+                    localStorage.setItem("item", JSON.stringify(item1));
+                    copyData();
+                }
+                console.log(item1,quan);
+        }
+        function displayData(){
+            table1.innerHTML = "";
+            console.log(item1)
+            for(var i=0; i<item1.length; i++){
+                var trow1 = document.createElement("tr");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                const delBtn = document.createElement('button');
+                delBtn.textContent = "Delete"
+                delBtn.addEventListener("click",delItem);
+                td1.textContent = item1[i];
+                td2.textContent = quan[i];
+                console.log(item1);
+                trow1.append(td1, td2,delBtn);
+                table1.append(trow1);
+            }
+        }
+        function copyData(){
+            localItem1 = JSON.parse(localStorage.getItem("item"));
+            if(localItem1){
+              item1=localItem1;
+            }
+            localQuan = JSON.parse(localStorage.getItem("quantity"));
+            if(localQuan){
+              quan=localQuan;
+            }
+            console.log(item1,quan);
+            displayData();
+        }
+        window.addEventListener("load",copyData)
+    </script>
+</html>

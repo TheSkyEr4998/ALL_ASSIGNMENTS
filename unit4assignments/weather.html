@@ -1,0 +1,45 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="text" id="city">
+        <button onclick="getData()">ENTER</button>
+        <div id="container">
+        </div>
+    </body>
+    <script>
+        var container = document.getElementById("container");
+        var API_KEY = "893b4ea56fe3e189c58a056ca652e2d8";
+        async function getData(){
+            var city = document.getElementById("city").value;
+            var res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metrik`)
+            var data = await res.json();
+            console.log(data);
+            displayData(data);
+        }
+//         main:
+// feels_like: 291.99
+// humidity: 47
+// pressure: 914
+// temp: 292.75
+// temp_max: 296.05
+// temp_min: 292.75
+        function displayData(data){
+            var product = document.createElement("div");
+
+            var temparature = document.createElement("p");
+            temparature.textContent = data.main.temp;
+
+            var pressure = document.createElement("p");
+            pressure.textContent = data.main.pressure;
+
+            var humidity = document.createElement("p");
+            humidity.textContent = data.main.humidity;
+
+            product.append(temparature, pressure, humidity);
+
+            container.append(product);
+        }
+    </script>
+</html>

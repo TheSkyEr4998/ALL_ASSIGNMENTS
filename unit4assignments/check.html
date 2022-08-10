@@ -1,0 +1,139 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+    </body>
+    <script>
+        // var mypromise = new Promise(function(resolve, reject){
+        //     var Passexam = false;
+        //     if(Passexam){
+        //         resolve("gifted a mobile");
+        //     }
+        //     else{
+        //         reject("not gifted");
+        //     }
+        // });
+        // console.log(mypromise);
+
+        // mypromise.then(function(res){
+        //     console.log(res);
+        // })
+        // .catch(function(err){
+        //     console.log(err);
+        // })
+        // var cat = {
+        //     legs: 4,
+        //     eyes: 2
+        // }
+        // var cow = Object.create(cat);
+        // cow.use = "milk",
+        // cow.nose = 1
+
+        // var dog = Object.create(cow);
+        // dog.ear = 2
+
+        // cow.prototype.ad = "green";
+        // console.log(dog.__proto__.__proto__);
+        function person1(name, age){
+            this.name = name;
+            this.age = age;
+            this.showname = function(){
+                console.log(this.name);
+            }
+        }
+        let p1 = new person1("venkat", 21);
+        console.log(p1);
+
+        function student1(name, age, student_id, college){
+            person1.call(this, name, age);
+            this.student_id = student_id;
+            this.college = college;
+        }
+        let stud1 = new student1("venkat", 18, 101, "dce");
+        console.log("stud1", stud1);
+
+        class person2{
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            showname = function(){
+                console.log(this.name);
+            }
+            getDetails(){ //adding method to prototype
+                console.log(`${this.name} is ${this.age} years old`);
+            }
+        }
+        let p2 = new person2("venkat", 21);
+        console.log(p2);
+
+        class student2 extends person2{
+            constructor(name, age, student_id, college){
+                super(name, age);
+                this.student_id = student_id;
+                this.college = college;
+            }
+        }
+        let stud2 = new student2("aathi", 21, 233, "dce");
+        console.log("stud2", stud2);
+
+        class cat{
+            constructor(legs, tail, claws, whiskers){
+                this.legs = legs;
+                this.tail = tail;
+                this.claws = claws;
+                this.whiskers = whiskers;
+            }
+        }
+        class tiger extends cat{
+            constructor(legs, tail, claws, whiskers, speed, weight, climb){
+                super(legs, tail, claws, whiskers);
+                this.speed = speed;
+                this.weight = weight;
+                this.climb = climb;
+            }
+        }
+        let tiger1 = new tiger(4, true, "sharp", true, 70, "300kgs", false);
+        console.log(tiger1);
+        //console.log(cat);
+
+        // class car{
+        //     constructor(name, brand){
+        //         this.name = name;
+        //         this.brand = brand;
+        //     }
+        // }
+        // class SUV extends car{
+        //     constructor(name, brand, seat, type){
+        //         super(name, brand);
+        //         this.seat = seat;
+        //         this.type = type;
+        //     }
+        // }
+        class stack{
+            constructor(){
+                this.length = 0;
+                this.stack = [];
+            }
+            push(el){
+                this.stack.push(el);
+                this.length++;
+            }
+            pop(){
+                let poppedElem = this.stack.pop();
+                this.length--;
+                return poppedElem;
+            }
+        }
+        let stack1 = new stack();
+        stack1.push(101);
+        stack1.push(102);
+        stack1.push(103);
+        stack1.push(104);
+        stack1.pop();
+        stack1.pop();
+        console.log(stack1);
+        
+    </script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign</title>
+
+    <style>
+
+.form{
+
+    width: auto;
+    height: auto;
+    padding: 10px;
+    color: black;
+
+}
+input{
+
+    width: 50%;
+    height: auto;
+
+    padding: 10px;
+}
+button:hover{
+
+    border-radius: 5px;
+    width: 10%;
+    height: 7%;
+color: goldenrod;
+}
+button{
+    background-color: aquamarine;
+
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+    </style>
+<script type="text/javascript" nonce="11957c0db3814022a83f3c32d2c" src="//local.adguard.org?ts=1656601583470&amp;type=content-script&amp;dmn=mail-attachment.googleusercontent.com&amp;pth=%2Fattachment%2Fu%2F0%2F%3Fui%3D2%26ik%3Dad2d0cd41e%26attid%3D0.1%26permmsgid%3Dmsg-f%3A1737070054612457940%26th%3D181b5002e324d9d4%26view%3Datt%26disp%3Dsafe%26realattid%3Df_l514bkt71%26saddbat%3DANGjdJ_wu3zdqK6XplrR_lyGe8IQe9dSgT1Xpv3qyyMx_bsypGN2HTMHnYTlzQuyoCGYzXU6UZnqH6xflcbueTFHS3XvljnIeYZeTEQxJK3tkV1YLDAkJoPcba40KVR4vTryDR1uNWoeNoMJ13-e4MVguiAWM05G6mXlPco5VUWJ43DcQl1-D6V_pgy6CeLhdxo2_K4QsvQdr-1MBQnZH_TSX-HIX2ImUd2hw8MHuzkk0VQTUqWtJlCd0nLoeVAy7JkWHJUdB7I8_wlqKjs1ij71M2BswyBlg2s81dUHP45FBT-9g8yxEtBcJAYNmFeP8WK0JTfC_tYGEmYtWHptwsCGe5S-ZaYjPd04hja5L2LezFDPm7DWsZKHOp9w6o5-lMZ2_26U-n80eMPck5wUIcNYYQ2vqm0OkN_tJ7cQR98ZOdcVpEujAbyvJpFOZDQ8XOxZqv0WbedZyVoQucO5h5xVn7j8AQiG9hlfk9YJYrpxd4Dwe7pVoswX53p6JEuOl1ba0y3I-YUcsOGM7RxsHquUPyct9OrgvZvATTBnhJIvymbamuwyfuI_ssh2f7_WUBQ1pVDwm7HuJBhAghD8KDWJgCmhmjkFt8FCq9ByOCe9xJrAjFZdf3SNRrju9VFIGgPxFya-sxM_ekQzwZbLHBYF-aH1klZFZanAhtCK_kVvV09987vO1bFo8U2vUDshZNihV4KZClLwRB6ZogkgzN08OVBuK3tP32NBHvhkS1GCrQDYfzVuuyulJVVmxb8&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;uag="></script>
+<script type="text/javascript" nonce="11957c0db3814022a83f3c32d2c" src="//local.adguard.org?ts=1656601583470&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+<body>
+    <form class="form">
+<label >Email</label> <br>
+<input id="email" type="email" placeholder="Enter your email ID"> <br>
+<label >Phone No.</label> <br>
+<input type="tel"  id="phone" placeholder="Phone number"> <br>
+<label >Password</label> <br>
+<input id="pass" type="password" placeholder="Password"> <br> <br>
+<button id="signUp">Sign Up</button>
+<button id="signIn">Log in</button>
+    </form>
+</body>
+</html>
+
+<script>
+document.querySelector("#signUp").addEventListener("click", signUpFunc);
+document.querySelector("#signIn").addEventListener("click", loginFunc);
+
+   
+ 
+
+function signUpFunc(){
+   event.preventDefault();
+
+
+   var email= document.querySelector("#email").value;
+       var phone= document.querySelector("#phone").value;
+        var pass= document.querySelector("#pass").value;
+ 
+        var arr = JSON.parse(localStorage.getItem("username"))||[];
+if(email == "" && phone == "" & pass == ""){
+    alert("Fill This form")
+    return;
+}
+else if(email == ""){
+    alert("Enter your email")
+    return;
+}else if(phone ==""){
+    alert("Enter phone no.")
+    return;
+}else if(pass == ""){
+    alert("Enter password")
+    return;
+}
+
+else{
+    alert("Sign up Success")
+}
+
+
+
+   var user = {
+    email: email,
+    phone: phone,
+    pass: pass,
+   };
+
+   arr.push(user)
+
+//    arr.map(function(elem){
+//     email = elem.email;
+//     phone = elem.phone;
+//     pass = elem.pass;
+//    })
+
+var json = JSON.stringify(arr);
+localStorage.setItem("username", json);
+
+}
+
+
+function loginFunc(){
+    event.preventDefault();
+    var email= document.querySelector("#email").value;
+       var phone= document.querySelector("#phone").value;
+        var pass= document.querySelector("#pass").value;
+ 
+
+    var user = localStorage.getItem("username");
+    var data = JSON.parse(user);
+
+data.filter(function(elem){
+
+    if(elem.email == email && elem.phone== phone && elem.pass == pass){
+        alert("Log in Success");
+        return;
+
+ };
+
+
+
+});
+if(email == "" || phone == "" || pass == ""){
+    alert("Enter details")
+}
+
+}
+
+
+
+
+</script>

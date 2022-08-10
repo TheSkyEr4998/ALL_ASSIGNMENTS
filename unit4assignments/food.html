@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: grid;
+                grid-template-columns: repeat(4, 2fr);
+                margin-top: 5%;
+                margin-left: 5%;
+                margin-right: 5%;
+                grid-gap: 20px;
+            }  
+
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #cecece;
+                background-color: aqua;
+            }
+            img {
+                margin-top: 10px;
+                width: 150px;
+                height: 150px;
+            }
+            p{
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id="myFav">
+        <button onclick="getData()">SEARCH CATEGORY</button>
+
+        <select id="selectItem" onclick="getSelect()"></select>
+        <div id="container"></div>
+    </body>
+    <script>
+        let container = document.getElementById("container");
+        let select = document.getElementById("selectItem");
+        async function getSelect(){
+            try{
+                var res = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list");
+                var data = await res.json();
+                appendData(data.meals);
+                console.log(data);
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        getSelect();
+
+        function appendData(data){
+            data.forEach(function(product){
+                var option1 = document.createElement("option");
+                option1.textContent = product.strCategory;
+                select.append(option1);
+            });
+        }
+
+        var means;
+        async function getData(){
+            try{
+                container.innerHTML = "";
+                var category = document.getElementById("myFav").value;
+                var res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+                var data = await res.json();
+                localStorage.setItem("meals", JSON.stringify(data));
+                console.log(data);
+                printData(data.meals);
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        getData();
+//         idMeal: "52959"
+// strMeal: "Baked salmon with fennel & tomatoes"
+// strMealThumb: "https://www.themealdb.com/images/media/meals/1548772327.jpg"
+        function printData(data){
+            data.forEach(function(product){
+               let productCard = document.createElement("div");
+
+               let image = document.createElement("img");
+               image.src = product.strMealThumb;
+
+               let name = document.createElement("p");
+               name.textContent = product.strMeal;
+
+               productCard.append(image, name);
+
+               container.append(productCard);
+            })
+        }
+        var item;
+        function copyData(){
+            item = JSON.parse(localStorage.getItem("meals"));
+            displayData();
+        }
+        window.addEventListener("load",copyData);
+    </script>
+</html>

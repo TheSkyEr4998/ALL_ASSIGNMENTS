@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: flex;
+                height: 500px;
+                margin: 5px;
+            }
+            #input-section, #output-section{
+                flex: 1;
+                border: 1px solid white;
+                margin-left: 60px;
+            }
+            h1{
+                color: skyblue;
+            }
+            select, input{
+                width: 350px;
+                height: 30px;
+            }
+            textarea{
+                width: 350px;
+                height: 80px;
+            }
+            button{
+                width: 80px;
+                height: 40px;
+                background-color: rgb(14, 117, 158);
+            }
+            table, th, td{
+                border: 1px solid black;
+                border-spacing: 5px;
+                column-gap: 20px;
+            }
+            th, td{
+                padding-right: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="input-section">
+                <h1>Add Product</h1>
+                <hr>
+                <h3>Category</h3>
+                <select id="category"> 
+                    <option>Electronics</option>
+                    <option>Furnitures</option>
+                    <option>Home Appliances</option>
+                    <option>Books</option>
+                </select>
+                <h3>Title</h3>
+                <input type="text" placeholder="type here..." id="title">
+                <h3>Description</h3>
+                <textarea placeholder="type here.." id="description"></textarea>
+                <h3>Price</h3>
+                <input type="number" id="price"><br><br>
+                <button onclick="addItem()">Add</button>
+            </div>
+            <div id="output-section">
+                <h1>Product Info</h1>
+                <hr>
+                <table id="table1">
+
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        var table1 = document.getElementById("table1");
+        var prodDetails = [];
+
+        function addItem(){
+            var c1 = document.getElementById("category");
+            var c2 = document.getElementById("title");
+            var c3 = document.getElementById("description");
+            var c4 = document.getElementById("price");
+            prodDetails.push(c1.value);
+            prodDetails.push(c2.value);
+            prodDetails.push(c3.value);
+            prodDetails.push(c4.value);
+            localStorage.setItem("bozaz", JSON.stringify(prodDetails));
+            displayData();
+        }
+        
+        function displayData(){
+            table1.innerHTML = "";
+            var i=0;
+            var j=1;
+            var trow2 = document.createElement("tr");
+                var th1 = document.createElement("th");
+                var th2 = document.createElement("th");
+                var th3 = document.createElement("th");
+                var th4 = document.createElement("th");
+                var th5 = document.createElement("th");
+
+                th1.textContent = "#";
+                th2.textContent = "Category";
+                th3.textContent = "Title";
+                th4.textContent = "Description";
+                th5.textContent = "Price";
+
+                trow2.append(th1,th2,th3,th4,th5);
+                table1.append(trow2)
+            while(i < prodDetails.length){
+
+                j.textContent = "";
+                var trow1 = document.createElement("tr");
+
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+                var td4 = document.createElement("td");
+                var td5 = document.createElement("td");
+              
+                td1.textContent = j;
+                td2.textContent = prodDetails[i];
+                i++;
+                td3.textContent = prodDetails[i];
+                i++;
+                td4.textContent = prodDetails[i];
+                i++;
+                td5.textContent = prodDetails[i];
+                i++;
+                trow1.append(td1,td2,td3,td4,td5);
+                table1.append(trow1);
+                j++;
+            }
+        }
+        function copyData(){
+            localItem1 = JSON.parse(localStorage.getItem("bozaz"));
+            if(localItem1){
+              prodDetails=localItem1;
+            }
+            console.log(prodDetails);
+            displayData();
+        }
+        window.addEventListener("load",copyData);
+    </script>
+</html>

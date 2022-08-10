@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="../styles/login.css"/>
+        <style>
+            #navbar{
+                width: 90%;
+                margin: auto;
+                margin-top: 10px;
+                margin-top: 50px;
+                display: flex;
+                justify-content: space-evenly;
+                align-content: flex-end;
+                /* background-color:orange; */
+                border-radius: 7px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+                
+            }
+            #navbar a{
+                text-decoration: none;
+                
+            }
+            button{
+                width: 30%;
+                /* background-color: coral; */
+                padding: 10px;
+             border-radius: 10px;
+             margin-top: 10px;
+             margin-bottom: 10px;
+             
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: white;
+                color: black;
+                box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            }
+            #buttons{
+                width: 30%;
+                display: flex;
+                justify-content: space-evenly;
+                /* border: 1px solid black; */
+                padding: 20px;
+                font-size: 20px;
+              
+            
+                
+            }
+            </style>
+    </head>
+
+    <body>
+        <div id="navbar">
+            <div id="buttons">
+              <a href="index.html">Home</a>
+            <a href="Login.html">Login</a>
+            <a href="SignUp.html">SignUp</a>
+            </div>
+        
+         </div>
+
+        <div id="login-form-div">
+
+            <form>
+                <!--Write form input elements here-->
+                <h1>Login page</h1>
+                <!-- <lable>Username</lable> -->
+                <br/>
+                <input type="text" placeholder="Mobile No" id="MobileNo"/>
+                
+                <!-- <label>password</label> -->
+                <br/>
+              
+                <input type="password" placeholder="Password" id="password"/>
+                <br/>
+                <br/>
+                <input type="submit" value="Log In"/>
+
+            </form>
+
+        </div>
+    </body>
+
+</html>
+<script src="../scripts/login.js"></script>

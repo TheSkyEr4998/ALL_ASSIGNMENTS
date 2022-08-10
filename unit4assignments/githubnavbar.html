@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0%;
+            }
+            #navbar{
+                display: flex;
+                align-items: center;
+                background-color: black;
+                color: white;
+                padding: 7px;
+            }
+            #logo{
+                width: 5%;
+            }
+            #logo img, #profile img{
+                width: 40px;
+                border-radius: 50%;
+            }
+            #search{
+                width: 20%;
+            }
+            #search input{
+                width: 250px;
+                padding: 5px;
+            }
+            #options{
+                width: 30%;
+            }
+            #options >ul#list{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #options > ul#list > li{
+                list-style-type: none;
+            }
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <div id="logo">
+                <img src="" alt="">
+            </div>
+            <div id="search">
+                <input type="text" id="search-input" placeholder="Username">
+            </div>
+            <div id="options">
+                <ul id="list">
+                    <li>pull request</li>
+                    <li>Issues</li>
+                    <li>Market place</li>
+                    <li>
+                        <a href="explore.html">Explore</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="profile">
+                <img src="" alt="" id="profile-img">
+            </div>
+        </div>
+        <div id="main"></div>
+    </body>
+    <script type="module">
+
+        import navbar from "./components/navbar.js"
+        import {getData} from "./scripts/index.js";
+        let header = document.getElementById("header");
+        header.innerHTML = navbar();
+        let response_data;
+
+        let searchInputElement = document.getElementById("search-input");
+        searchInputElement = document.addEventListener("keypress", async(event) =>{
+            try{
+                if(event.key === "Enter"){
+                    let searchInputValue = searchInputElement.value;
+                    let response_data = await getData(`https://api.github.com/users/${searchInputValue}`);
+                    console.log(response_data);
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        let getRepoButton = document.getElementById("get-repo");
+        getRepoButton.addEventListener("click", aynsc => {
+            try{
+                
+            }
+        })
+    </script>
+</html>

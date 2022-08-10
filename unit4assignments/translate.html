@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: flex;
+                height: 500px;
+                padding: 5px;
+            }
+            #input-section, #output-section{
+                flex: 1;
+                border: 1px solid black;
+                margin: 5px;
+            }
+            #input-text{
+                height: 80%;
+                width: 95%;
+                margin-top: 20px;
+            }
+            button{
+                padding: 5px;
+                cursor: pointer;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="input-section">
+                <button onclick="translatedText()">Translate</button>
+                <textarea id="input-text"></textarea>
+            </div>
+            <div id="output-section">
+                <p id="translated-text"></p>
+            </div>
+        </div>
+    </body>
+    <script>
+        let url = `https://libretranslate.de/translate`;
+
+        async function translatedText(){
+        try{
+            let input = document.getElementById("input-text").value;
+
+            let res = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    q: input,
+                    source: "en",
+                    target: "hi",
+                    format: "text",
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                }
+            });
+
+            let data = await res.json();
+
+            console.log(data);
+            let translatedtextP = document.getElementById("translated-text");
+            displayData(data, translatedtextP);
+        }
+        catch(err){
+            console.log(err);
+        }
+        }
+
+        function displayData(data, parent){
+            parent.textContent = data.translatedText;
+        }
+    </script>
+
+</html>

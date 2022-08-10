@@ -1,0 +1,161 @@
+<html>
+    <head>
+        <style>
+            h1{
+                color: red;
+            }
+            .initial{
+                text-align: center;
+            }
+            .color1{
+                background-color: black;
+            }
+            .color2{
+                background-color: rgb(37, 36, 36);
+                width: 500px;
+                height: 650px;
+                margin: auto;
+                text-align: center; 
+                margin-top: 2%;
+            }
+            .fontsize{
+                font-size: x-large;
+                color: white;
+                font-weight: bold;
+                padding-top: 60px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .heading1{
+                color: white;
+                font-size: large;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .headcolor{
+                color: rgb(221, 10, 98);
+                font-size: x-large;
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #line{
+                color: white;
+                font-weight: bold;
+            }
+            .button1{
+                background-color: rgb(221, 10, 98);
+                width: 400px;
+                height: 40px;
+                margin: auto;
+                color: white;
+                font-size: large;
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 20px;
+                border-radius: 50px 50px 50px 50px;
+                margin-top: 7%;
+            }
+            .space{
+                margin-top: 6%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="initial">
+            <h1>Eatfit</h1>
+            <button onclick="myPage()">Create page</button>
+        </div>
+    </body>
+    <script>
+        function myPage(){
+            document.getElementsByTagName("body")[0].setAttribute("class", "color1");
+            
+            var c1 = document.createElement("div");
+            c1.setAttribute("class", "color2");
+            document.body.appendChild(c1);
+
+            var c2 = document.createElement("div");
+            c2.setAttribute("class", "fontsize");
+            c1.appendChild(c2);
+            
+            var c3 = document.createElement("h");
+            c3.innerText = "Today Sun, 26th Apr";
+            c2.appendChild(c3);
+
+            var c4 = document.createElement("br");
+            c3.appendChild(c4);
+
+            var c5 = document.createElement("h");
+            c5.innerText = "Schedule - 7A.M. onwards";
+            c3.appendChild(c5);
+
+            var c6 = document.createElement("div");
+            c6.setAttribute("class", "space");
+            c2.appendChild(c6);
+
+            var c7 = document.createElement("h");
+            c7.setAttribute("class", "heading1");
+            c7.textContent = "Parathe Sharathe with";
+            c6.appendChild(c7);
+
+            var c8 = document.createElement("br");
+            c7.appendChild(c8);
+
+            var c9 = document.createElement("h");
+            c9.setAttribute("class", "headcolor");
+            c9.innerText = "Chef Archana Doshi";
+            c7.appendChild(c9);
+
+            var c10 = document.createElement("p");
+            c10.setAttribute("class", "line");
+            c10.innerText = "_______";
+            c2.appendChild(c10);
+
+            var c11 = document.createElement("div");
+            c2.appendChild(c11);
+
+            var c12 = document.createElement("br");
+            c11.appendChild(c12);
+
+            var c13 = document.createElement("h");
+            c13.setAttribute("class", "heading1");
+            c13.innerText = "Species and Immunity with";
+            c11.appendChild(c13);
+
+            var c14 = document.createElement("br");
+            c11.appendChild(c14);
+
+            var c15 = document.createElement("h");
+            c15.setAttribute("class", "headcolor");
+            c15.innerText = "Nutrition expert Manasa Rajan";
+            c11.appendChild(c15);
+
+            var c16 = document.createElement("p");
+            c16.setAttribute("class", "line");
+            c16.innerText = "_______";
+            c2.appendChild(c16);
+
+            var c17 = document.createElement("div");
+            c2.appendChild(c17);
+
+            var c18 = document.createElement("br");
+            c17.appendChild(c18);
+
+            var c19 = document.createElement("h");
+            c19.setAttribute("class", "heading1");
+            c19.innerText = "Postman Vegetables with";
+            c17.appendChild(c19);
+
+            var c20 = document.createElement("br");
+            c17.appendChild(c20);
+
+            var c21 = document.createElement("h");
+            c21.setAttribute("class", "headcolor");
+            c21.innerText = "Chef Jason D'Souza";
+            c17.appendChild(c21);
+
+            var c18 = document.createElement("p");
+            c18.setAttribute("class", "button1");
+            c18.innerText = "SIGN UP NOW";
+            c2.appendChild(c18);
+        }
+    </script>
+</html>

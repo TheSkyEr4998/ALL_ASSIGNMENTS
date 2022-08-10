@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <style>
+            #center{
+                padding-top: 3%;
+                padding-left: 37%;
+                background-color: blueviolet;
+                height: 13%;
+                width: 100%;
+            } 
+            #container{
+                display: grid;
+                grid-template-columns: repeat(4, 2fr);
+                margin-top: 5%;
+                margin-left: 5%;
+                margin-right: 5%;
+                grid-gap: 20px;
+            }  
+            #container > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #cecece;
+                background-color: pink;
+            }
+            img {
+                margin-top: 10px;
+                width: 150px;
+                height: 150px;
+            }
+            p{
+                color: green;
+                font-weight: bold;
+            }
+            .img1{
+                width: 400px;
+                height: 400px; 
+                padding-left: 32%; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="center">
+            <input type="text" id="movieName">
+            <button onclick="getData()" oninput="debounce(main, 1000)">SEARCH</button>
+        </div>
+        <div id="container"></div>
+        <div id="container1"></div>
+    </body>
+    <script>
+        var container = document.getElementById("container");
+        var container1 = document.getElementById("container1");
+        var API_KEY = "95f15b51";
+        async function main(){
+            let data = await getData();
+            if(data === undefined){
+                return false;
+            }
+            //console.log(data.length);  
+            displayData(data);
+        }
+        async function getData(){
+            try{
+                container.innerHTML = "";
+                container1.innerHTML = "";
+                var movie = document.getElementById("movieName").value;
+                var res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`);
+                var data = await res.json();
+                if(data.Response == "True"){
+                //console.log(data.length);
+                    console.log(data);
+                    displayData(data.Search);
+                }
+                else if(movie.length > 0){
+                    console.log(data);
+                    let gif = "https://media1.giphy.com/media/d906FK91VCXsbDxBu6/giphy.gif?cid=ecf05e47rx2246hmi2rx6rvqegor49t2vha167mbxx0k3llu&rid=giphy.gif&ct=g";
+                    let image = document.createElement("img");
+                    image.setAttribute("class", "img1");
+                    image.src = gif;
+                    container1.append(image);
+                }
+            }
+            catch(err){
+                 console.log(err);
+             }
+        }
+        getData();
+        function displayData(data){
+            data.forEach(function (product) {
+                //console.log(product);
+                let productCard = document.createElement("div");
+
+                let Title = document.createElement("p");
+                Title.textContent = product.Title;
+
+                let Poster = document.createElement("img");
+                Poster.src = product.Poster;
+                
+                let Type = document.createElement("h2");
+                Type.textContent = product.Type;
+                
+                let Year = document.createElement("h3");
+                Year.textContent = product.Year;
+
+
+                productCard.append(Poster, Title, Type, Year);
+                
+                container.append(productCard);
+            });
+        }
+        var timerId;
+        function debounce(cbFunc, delay){
+            if(timerId){
+                clearTimeout(timerId);
+            }
+            timerId = setTimeout(function (){
+                cbFunc();
+            }, delay);
+        }
+    </script>
+</html>

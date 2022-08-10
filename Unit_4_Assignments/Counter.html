@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Counter</title>
+    </head>
+    <body>
+        <h1 id="display">0</h1>
+        <button id="increase">Increase</button>
+        <button id="decrease">Decrease</button>
+    </body>
+    <script>
+        document.querySelector('#increase').addEventListener('click', increaseFn);
+        document.querySelector('#decrease').addEventListener('click', decreaseFn); 
+        var count;
+        if( localStorage.getItem('counter') === null) {
+            count = 0;
+        } 
+        else {
+            count = localStorage.getItem('counter');
+        }
+        document.querySelector('h1').innerText = count;
+        function increaseFn() {
+            count++;
+            localStorage.setItem('counter', count);
+            document.getElementById('display').innerText = count;
+        }
+        function decreaseFn() {
+            count--;
+            localStorage.setItem('counter', count);
+            document.getElementById('display').innerText = count;
+        }
+    </script>
+</html>

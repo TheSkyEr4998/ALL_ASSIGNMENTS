@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration</title>
+	</head>
+	<body>
+		<input type="text" name="first" id="first" placeholder="Enter First Number">
+		
+		<input type="text" name="second" id="second" placeholder="Enter Second Number">
+		<hr>
+		<h1 id="answer">ANSWER</h1>
+		<hr>
+		<button onclick="addFn()">ADDITION</button>
+		<button onclick="subtFn()">SUBTRACTION</button>
+		<button onclick="multiFn()">MULTIPLICATION</button>
+		<button onclick="divideFn()">DIVISION</button>
+
+		<button onclick="resetForm()">RESET FORM</button>
+		<button onclick="resetDisplay()">RESET DISPLAY</button>
+
+		<script type="text/javascript">
+			function addFn() {
+				// Show filled name inside h1
+				document.getElementById("answer").innerText=(parseInt(document.getElementById("first").value))+(parseInt(document.getElementById("second").value))
+                alert((parseInt(document.getElementById("first").value))+(parseInt(document.getElementById("second").value)))
+			}
+
+			function subtFn() {
+				// Show the selected gender inside h2
+				document.getElementById("answer").innerText=Math.abs((parseInt(document.getElementById("first").value))-(parseInt(document.getElementById("second").value)))
+                alert(Math.abs((parseInt(document.getElementById("first").value))-(parseInt(document.getElementById("second").value))))
+			}
+
+			function multiFn() {
+				// Show the filled email inside h3
+				document.getElementById("answer").innerText=(parseInt(document.getElementById("first").value))*(parseInt(document.getElementById("second").value))
+                alert((parseInt(document.getElementById("first").value))*(parseInt(document.getElementById("second").value)))
+            }
+
+			function divideFn() {
+				// Show the filled mobile inside h4
+				document.getElementById("answer").innerText=Math.floor(parseInt(document.getElementById("first").value))/(parseInt(document.getElementById("second").value))
+                alert(Math.floor(parseInt(document.getElementById("first").value))/(parseInt(document.getElementById("second").value)))
+            }
+
+			function resetForm() {
+				// Reset all the form elements to default values (blank "")
+				document.getElementById("answer").innerText="ANSWER"
+				document.getElementById("first").value=""
+				document.getElementById("second").value=""
+			}
+
+			function resetDisplay() {
+				// Reset all the headings (h1, h2, h3, h4) to blank values
+				document.getElementById("answer").innerText="ANSWER"
+			}
+		</script>
+	</body>
+</html>
